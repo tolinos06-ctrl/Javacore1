@@ -7,36 +7,42 @@ public class FrenchRevenueTaxCalculator {
         double pourcentage = 0;
         double impot = 0;
         double salaireAbattement = netAnnualSalary * 0.9;
+        final int tranche1 = 11294;
+        final int tranche2 = 28797;
+        final int tranche3 = 82342;
+        final int tranche4 = 177106;
 
         // mettre dans l'ordre décroissant au lieu de croissant ( pour les if )
-        if( salaireAbattement > 177106){
-            impot += (salaireAbattement - 177106) * 0.45;
-            salaireAbattement = 177106;
+        // rajouter des constantes de type finals pour toutes les tranches
+        if( salaireAbattement > tranche4){
+            impot += (salaireAbattement - tranche4) * 0.45;
+            salaireAbattement = tranche4;
         }
 
-        if(salaireAbattement > 82342){
-            impot += (salaireAbattement - 82342)*0.41;
-            salaireAbattement = 82342;
+        if(salaireAbattement > tranche3){
+            impot += (salaireAbattement - tranche3)*0.41;
+            salaireAbattement = tranche3;
         }
 
-        if(salaireAbattement > 28797) {
-            impot += (salaireAbattement - 28797) * 0.3 ;
-            salaireAbattement = 28797;
+        if(salaireAbattement > tranche2) {
+            impot += (salaireAbattement - tranche2) * 0.3 ;
+            salaireAbattement = tranche2;
         }
 
-        if(salaireAbattement > 11294){
-            impot += (salaireAbattement - 11294) * 0.11;
-            salaireAbattement = 11294;
+        if(salaireAbattement > tranche1){
+            impot += (salaireAbattement - tranche1) * 0.11;
+            salaireAbattement = tranche1;
         }
 
-        if(salaireAbattement<= 11294 ){
+        if(salaireAbattement<= tranche1 ){
             System.out.println("Pas d'impot sur le revenu");
         }
 
         pourcentage = impot * 100 / netAnnualSalary ;
         netAnnualSalary -= impot;
-        System.out.println(" Imposition net : " + impot + " soit " + pourcentage + " % du salaire");
 
+
+        System.out.println(" Imposition net : " + impot + " soit " + pourcentage + " % du salaire");
         System.out.println("Le salaire net est : " + netAnnualSalary);
 
 
